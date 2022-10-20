@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "862945972571",
+    "project_id": "sandangs-10f40",
+    "storage_bucket": "sandangs-10f40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862945972571:android:e6ea51504e05cbe88b0a7e",
+        "android_client_info": {
+          "package_name": "com.example.sandangs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862945972571-p19ug0hn6h0o8ml2qk8gkbqlia6u69ru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxw1glR-rLtzL1vyLXhDdjKOn7EahFc-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862945972571-p19ug0hn6h0o8ml2qk8gkbqlia6u69ru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
