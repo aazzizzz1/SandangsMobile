@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sandangs/api/api_get_user.dart';
 import 'package:sandangs/constant.dart';
-import 'package:sandangs/models/user_model.dart';
+import 'package:sandangs/pages/home_page.dart';
 import 'package:sandangs/pages/sign_up.dart';
 import 'package:sandangs/widget/authentication/auth_service.dart';
 import 'package:sandangs/widget/authentication/shared_preferences.dart';
 import 'package:sandangs/widget/bottom_menu/bottom_menu.dart';
-import 'package:sandangs/widget/db_helper/db_user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -267,6 +266,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () async {
                                     if(_formKey.currentState!.validate()){
                                       try{
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return Center(child: CircularProgressIndicator());
+                                            }
+                                        );
                                         user = await AuthService().signIn(email: _email.text, password: _pass.text);
                                       } finally{
                                         if(user != null){
@@ -284,9 +289,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             _prefService.createCache(dataUser!);
 
                                             Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) => const BottomMenu())
+                                                MaterialPageRoute(builder: (context) => BottomMenu(currentScreen: HomePages(),currentTab: 0,))
                                             );
                                           } else {
+                                            Navigator.pop(context);
                                             Fluttertoast.showToast(
                                               msg: "Please verify your email first",
                                               toastLength: Toast.LENGTH_SHORT,
@@ -298,6 +304,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             );
                                           }
                                         } else {
+                                          Navigator.pop(context);
                                           Fluttertoast.showToast(
                                             msg: "Username or Password Incorrect",
                                             toastLength: Toast.LENGTH_SHORT,
@@ -318,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
 
                           Container(
-                            height: size.height*0.28,
+                            height: MediaQuery.of(context).size.height * 0.35,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

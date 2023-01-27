@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandangs/constant.dart';
 import 'package:sandangs/models/user_model.dart';
+import 'package:sandangs/pages/edit_profile.dart';
 import 'package:sandangs/pages/login.dart';
 import 'package:sandangs/widget/authentication/auth_service.dart';
 import 'package:sandangs/widget/db_helper/db_user.dart';
@@ -61,10 +62,10 @@ class _MyProfileState extends State<MyProfile> {
             Container(
               margin: EdgeInsets.only(top: size.height*0.2),
               width: size.width,
-              height: size.height*0.6,
+              height: MediaQuery.of(context).size.height * 0.65,
               decoration: BoxDecoration(
                 boxShadow: [BoxShadow(
-                  blurRadius: 2,
+                  blurRadius: 1,
                   color: Colors.grey,
                 )],
                 borderRadius: BorderRadius.only(
@@ -112,7 +113,7 @@ class _MyProfileState extends State<MyProfile> {
                       Container(
                         width: size.width*0.5,
                         height: 37,
-                        margin: EdgeInsets.symmetric(vertical: 10),
+                        margin: EdgeInsets.only(top:10, bottom: 30),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [thirdColor,secondaryColor],
@@ -131,14 +132,19 @@ class _MyProfileState extends State<MyProfile> {
                                 fontWeight: FontWeight.w700,
                                 fontFamily: 'Poppins'),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              (context),
+                              MaterialPageRoute(builder: (context) => EditMyProfile()),
+                            );
+                            },
                           child: const Text('Edit Profile'),
                         ),
                       ),
                       Container(
                         width: size.width-40,
-                        height: 38,
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        height: 43,
+                        margin: EdgeInsets.symmetric(vertical: 7),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: Colors.white,
@@ -170,8 +176,8 @@ class _MyProfileState extends State<MyProfile> {
                       ),
                       Container(
                         width: size.width-40,
-                        height: 38,
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        height: 43,
+                        margin: EdgeInsets.symmetric(vertical: 7),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white,
@@ -206,8 +212,8 @@ class _MyProfileState extends State<MyProfile> {
                       ),
                       Container(
                         width: size.width-40,
-                        height: 38,
-                        margin: EdgeInsets.symmetric(vertical: 5),
+                        height: 43,
+                        margin: EdgeInsets.symmetric(vertical: 7),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white,
@@ -219,12 +225,43 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                         child: TextButton(
                           onPressed: (){
-                            AuthService.signOut();
-                            _deleteUser();
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const LoginScreen())
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  child: AlertDialog(
+                                    title: Text('Logout'),
+                                    content: Text('Anda yakin ingin Logout?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('CANCEL', style: TextStyle(
+                                            color: secondaryColor
+                                        ),),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          AuthService.signOut();
+                                          _deleteUser();
+                                          Navigator.push(context,
+                                              MaterialPageRoute(builder: (context) => const LoginScreen())
+                                          );
+                                        },
+                                        child: Text('LOGOUT',
+                                          style: TextStyle(
+                                              color: Colors.red
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                             );
                           },
+
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -232,7 +269,7 @@ class _MyProfileState extends State<MyProfile> {
                               Text(
                                 '  Log Out',
                                 style: TextStyle(
-                                  color: blackColor,
+                                  color: Colors.red,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                 ),

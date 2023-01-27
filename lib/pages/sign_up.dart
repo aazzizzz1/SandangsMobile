@@ -257,6 +257,9 @@ class _SignUpState extends State<SignUp> {
                               child: const Text('Sign Up'),
                             ),
                           ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
                           Stack(
                             children: [
                               Divider(
@@ -281,6 +284,9 @@ class _SignUpState extends State<SignUp> {
                                 indent: size.width*0.45,
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
                           ),
                           Container(
                             width: size.width-80,
@@ -310,8 +316,9 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: size.height * 0.05,
+
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.11,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

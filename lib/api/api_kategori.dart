@@ -11,7 +11,7 @@ class ApiServiceKategori {
 
   Future<Produk> topHeadlines() async {
     final response = await http.get(
-        Uri.parse('https://api.yufagency.com/product_filter_category/$namaKategori'));
+        Uri.parse('https://api.yufagency.com/filter_category_nama/$namaKategori'));
     if (response.statusCode == 200) {
       return Produk.fromJson(json.decode(response.body));
     } else {

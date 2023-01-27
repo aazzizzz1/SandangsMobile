@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:sandangs/widget/fitting/container_product.dart';
+//import 'package:sandangs/widget/fitting/container_product.dart';
 
 class MovingProduk extends StatefulWidget {
   MovingProduk({
@@ -28,11 +28,11 @@ class _MovingProdukState extends State<MovingProduk> {
           widget.busana,
         ),
       ),
-      onPanUpdate: (details) {
+      onPanUpdate: (details){
         setState(() {
           widget.offset = Offset(
-            widget.offset.dx + details.delta.dx,
-            widget.offset.dy + details.delta.dy,
+            widget.offset.dx+details.delta.dx,
+            widget.offset.dy+details.delta.dy,
           );
         });
       },

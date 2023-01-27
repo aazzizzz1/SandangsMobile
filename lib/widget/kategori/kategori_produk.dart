@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandangs/widget/fitting/list_kategori.dart';
 import 'package:sandangs/widget/kategori/item_kategori.dart';
+import 'package:sandangs/pages/kategori_pages.dart';
 
 class KategoriProduk extends StatelessWidget {
   const KategoriProduk({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class KategoriProduk extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context){
-                          return const Scaffold();
+                          return KategoriPage(namaKategori: kategoriList[i].name);
                         })
                     );
                   },

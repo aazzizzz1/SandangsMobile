@@ -32,7 +32,6 @@ class ProjectElement {
   ProjectElement({
     required this.id,
     required this.idUser,
-    required this.username,
     required this.judul,
     required this.kebutuhan,
     required this.biaya,
@@ -44,7 +43,6 @@ class ProjectElement {
 
   String id;
   String idUser;
-  String username;
   String judul;
   String kebutuhan;
   String biaya;
@@ -56,7 +54,6 @@ class ProjectElement {
   factory ProjectElement.fromJson(Map<String, dynamic> json) => ProjectElement(
     id: json["id"],
     idUser: json["id_user"],
-    username: json["username"],
     judul: json["judul"],
     kebutuhan: json["kebutuhan"],
     biaya: json["biaya"],
@@ -69,7 +66,6 @@ class ProjectElement {
   Map<String, dynamic> toJson() => {
     "id": id,
     "id_user": idUser,
-    "username": username,
     "judul": judul,
     "kebutuhan": kebutuhan,
     "biaya": biaya,

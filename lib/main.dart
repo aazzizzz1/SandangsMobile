@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sandangs/pages/login.dart';
 import 'package:sandangs/routes.dart';
+import 'package:sandangs/widget/provider/cart_provider.dart';
 import 'package:sandangs/widget/provider/fitting_room_provider.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   runApp(const MyApp());
 }
 
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => FittingRoomProv())
+        ChangeNotifierProvider(create: (context) => FittingRoomProv()),
+        ChangeNotifierProvider(create: (context) => KeranjangProv()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -29,6 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: splashRoute,
         routes: routes,
+        builder: EasyLoading.init(),
         home: const LoginScreen(),
       ),
     );

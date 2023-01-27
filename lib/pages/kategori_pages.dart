@@ -1,23 +1,28 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sandangs/constant.dart';
-import 'package:sandangs/widget/gridview/produk_gridview.dart';
-import 'package:sandangs/widget/kategori/kategori_produk.dart';
-import 'package:sandangs/widget/slideview/slideview.dart';
 import 'package:sandangs/pages/cart_screen.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
 import 'package:badges/badges.dart';
 import 'package:provider/provider.dart';
+import 'package:sandangs/widget/gridview/gridview_kategori_produk.dart';
 
-
-class Mall extends StatefulWidget {
-
-  const Mall({Key? key}) : super(key: key);
+class KategoriPage extends StatefulWidget {
+  String namaKategori;
+  KategoriPage({
+    required this.namaKategori,
+  });
 
   @override
-  State<Mall> createState() => _MallState();
+  State<KategoriPage> createState() => _KategoriPageState(namaKategori: namaKategori);
 }
 
-class _MallState extends State<Mall> {
+class _KategoriPageState extends State<KategoriPage> {
+  String namaKategori;
+
+  _KategoriPageState({
+    required this.namaKategori,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class _MallState extends State<Mall> {
           },
         ),
         title: Text(
-          "Sandangs Mall",
+          "$namaKategori",
           style: tittleDark,
         ),
         actions: [
@@ -86,37 +91,19 @@ class _MallState extends State<Mall> {
       body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SlideView(),
               Container(
                 margin: EdgeInsets.only(top: 10),
               ),
-              KategoriProduk(),
               Padding(
-                padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
-                child: Row(
-                  children: [
-                    Text('Recommended',
-                        style: TextStyle(
-                          color: secondaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        )),
-                    Spacer(),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text('View All',
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14,
-                          )),
-                    ),
-                  ],
+                padding: const EdgeInsets.only(
+                    left: 25,
+                    right: 25,
+                    top: 10
                 ),
               ),
-              ProdukGridview(),
+              GridViewKategoriProduk(namaKategori: namaKategori),
             ],
           )),
-    );
+      );
   }
 }

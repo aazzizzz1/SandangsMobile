@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandangs/constant.dart';
 import 'package:sandangs/models/project_model.dart';
+import 'package:sandangs/pages/detail_project.dart';
 
 class CardProject extends StatelessWidget {
   final ProjectElement project;
@@ -42,7 +43,7 @@ class CardProject extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
-                              color: secondaryColor
+                              color: orangePrice,
                           )
                       ),
                     ],
@@ -63,7 +64,7 @@ class CardProject extends StatelessWidget {
                     onPressed: (){
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return Container();
+                            return DetailProject(project: project);
                             // return DetailProjectUser(project: project);
                           })
                       );

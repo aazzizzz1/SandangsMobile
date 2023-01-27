@@ -5,6 +5,10 @@ import 'package:sandangs/models/konveksi_model.dart';
 import 'package:sandangs/pages/pilih_konveksi.dart';
 import 'package:sandangs/widget/kategori/kategori_produk.dart';
 import 'package:sandangs/widget/listview/vertical_list_konveksi.dart';
+import 'package:sandangs/pages/cart_screen.dart';
+import 'package:sandangs/widget/provider/cart_provider.dart';
+import 'package:badges/badges.dart';
+import 'package:provider/provider.dart';
 
 class KonveksiExplore extends StatefulWidget {
   const KonveksiExplore({Key? key}) : super(key: key);
@@ -30,6 +34,9 @@ class _KonveksiExploreState extends State<KonveksiExplore> {
 
   @override
   Widget build(BuildContext context) {
+    var keranjang = Provider.of<KeranjangProv>(context, listen: true);
+    keranjang.jumlahplus();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -47,13 +54,44 @@ class _KonveksiExploreState extends State<KonveksiExplore> {
         ),
         actions: [
           Center(
-            child: IconButton(
+            child: keranjang.jumlah > 0 ? Badge(
+              badgeColor: Colors.orange,
+              animationType: BadgeAnimationType.slide,
+              borderSide: BorderSide(color: Colors.white),
+              badgeContent: Text(
+                keranjang.jumlah.toString(),
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
+              position: BadgePosition.topEnd(top: 0, end: 5),
+              child: IconButton(
+                icon  : Icon(
+                  Icons.shopping_cart,
+                  size: 25,
+                  color: secondaryColor,
+                ),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CartScreen()
+                    ),
+                  );
+                },
+              ),
+            ) : IconButton(
               icon  : Icon(
                 Icons.shopping_cart,
                 size: 25,
                 color: secondaryColor,
               ),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartScreen()
+                  ),
+                );
+              },
             ),
           )
         ],

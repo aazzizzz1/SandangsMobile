@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sandangs/pages/home_page.dart';
 import 'package:sandangs/pages/login.dart';
 import 'package:sandangs/widget/bottom_menu/bottom_menu.dart';
 
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
               MaterialPageRoute(
                   builder: (context){
                     if(FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified){
-                      return const BottomMenu();
+                      return BottomMenu(currentScreen: HomePages(),currentTab: 0,);
                     }else{
                       return const LoginScreen();
                     }
